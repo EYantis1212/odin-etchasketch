@@ -46,6 +46,17 @@ h2 {
 }
 
 .sketch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 80vw;
     height: 100%;
+}
+
+#grid-container {
+    display: grid;
+    background-color: var(--text-light);
+    height: 70vh;
+    width: 70vh;
+    grid-gap: 1px;
 }
