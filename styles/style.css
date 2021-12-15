@@ -5,3 +5,47 @@
     --text-light    : #def2f1;
     --text-dark     : #17252a;
 }
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    display: flex;
+    background-color: var(--main-bg-color);
+    color: var(--text-dark);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+}
+h1 {
+    font-size: 4em;
+    font-weight: 900;
+}
+h2 {
+    font-weight: 400;
+}
+.sidebar {
+    background-color: var(--main-bg-accent);
+    color: var(--text-light);
+    width: 20vw;
+    height: 100vh;
+}
+
+.sketch {
+    width: 80vw;
+    height: 100%;
+}
