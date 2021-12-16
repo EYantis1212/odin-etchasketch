@@ -8,59 +8,52 @@ const lbColors = [
     "#e0165c",
     "#cc56a3",
 ];
+
 // Methods and Selectors
 const gridContainer = document.getElementById("grid-container");
 const gridSlider = document.getElementById("grid-slider");
 const sliderDisplay = document.getElementById("slider-display");
-const drkModeBtn = document.getElementById("darkmode-btn");
-const ltModeBtn = document.getElementById("lightmode-btn");
-const liteBrightBtn = document.getElementById("litebrightmode-btn");
-let mode = "ltMode";
+const darkModeBtn = document.getElementById("darkmode-btn");
+const lightModeBtn = document.getElementById("lightmode-btn");
+const liteBriteBtn = document.getElementById("litebrightmode-btn");
+let mode = "light";
 let gridSize = 16;
+let elementShadowSize = 16;
 
 //Event Listeners
+lightModeBtn.onclick = () => setMode("light");
+darkModeBtn.onclick = () => setMode("dark");
+liteBriteBtn.onclick = () => setMode("liteBrite");
 
-// Dark Mode
-drkModeBtn.addEventListener("click", function () {
-    mode = "drkMode";
-    drkModeBtn.classList.remove("button-inactive");
-    drkModeBtn.classList.add("button-active");
-    ltModeBtn.classList.remove("button-active");
-    ltModeBtn.classList.add("button-inactive");
-    liteBrightBtn.classList.add("button-inactive");
-    liteBrightBtn.classList.remove("button-active");
-    gridContainer.classList.remove("light-mode");
-    gridContainer.classList.add("dark-mode");
+// Mode Switch
+
+function setMode(modeClick) {
+    modeSwitch(modeClick);
+    mode = modeClick;
     createElements(gridSize);
-});
+}
 
-// Light Mode
-ltModeBtn.addEventListener("click", function () {
-    mode = "ltMode";
-    drkModeBtn.classList.add("button-inactive");
-    drkModeBtn.classList.remove("button-active");
-    ltModeBtn.classList.add("button-active");
-    ltModeBtn.classList.remove("button-inactive");
-    liteBrightBtn.classList.add("button-inactive");
-    liteBrightBtn.classList.remove("button-active");
-    gridContainer.classList.add("light-mode");
+function modeSwitch(modeClick) {
     gridContainer.classList.remove("dark-mode");
-
-    createElements(gridSize);
-});
-// Light Bright Mode
-liteBrightBtn.addEventListener("click", function () {
-    mode = "liteBrightMode";
-    drkModeBtn.classList.add("button-inactive");
-    drkModeBtn.classList.remove("button-active");
-    ltModeBtn.classList.remove("button-active");
-    ltModeBtn.classList.add("button-inactive");
-    liteBrightBtn.classList.add("button-active");
-    liteBrightBtn.classList.remove("button-inactive");
-    gridContainer.classList.remove("light-mode");
-    gridContainer.classList.add("dark-mode");
-    createElements(gridSize);
-});
+    gridContainer.classList.add("light-mode");
+    if (mode === "light") {
+        lightModeBtn.classList.remove("btn-active");
+    } else if (mode === "dark") {
+        darkModeBtn.classList.remove("btn-active");
+    } else if (mode === "liteBrite") {
+        liteBriteBtn.classList.remove("btn-active");
+    }
+    if (modeClick === "light") {
+        gridContainer.classList.add("light-mode");
+        lightModeBtn.classList.add("btn-active");
+    } else if (modeClick === "dark") {
+        gridContainer.classList.add("dark-mode");
+        darkModeBtn.classList.add("btn-active");
+    } else if (modeClick === "liteBrite") {
+        gridContainer.classList.add("dark-mode");
+        liteBriteBtn.classList.add("btn-active");
+    }
+}
 
 // Slider Functionality
 sliderDisplay.textContent = gridSlider.value;
@@ -82,22 +75,29 @@ function createElements(gridSize) {
         const gridElement = document.createElement("div");
         gridElement.addEventListener("mouseover", draw);
         gridContainer.appendChild(gridElement);
-        if (mode === "liteBrightMode") {
+        if (mode === "liteBrite") {
             gridElement.style.borderRadius = "50%";
+            console.log(gridElement.style.fontSize);
+            if (gridSize >= 16 && gridSize < 32) {
+                gridElement.style.border = `4px inset #00000080`;
+            } else if (gridSize >= 32 && gridSize <= 40) {
+                gridElement.style.border = `2px inset #00000080`;
+            } else if (gridSize > 40) {
+                gridElement.style.border = `none`;
+            }
         }
     }
 }
 
 // Grid Draw
 function draw(e) {
-    if (mode === "ltMode") {
+    if (mode === "light") {
         e.target.style.backgroundColor = "#17252a";
-    } else if (mode === "drkMode") {
+    } else if (mode === "dark") {
         e.target.style.backgroundColor = "#3aafa9";
-    } else if (mode === "liteBrightMode") {
+    } else if (mode === "liteBrite") {
         let randomColor = Math.floor(Math.random() * lbColors.length);
         e.target.style.backgroundColor = `${lbColors[randomColor]}`;
-        e.target.style.border = `.3vw inset #00000080`;
     }
 }
 
@@ -108,5 +108,4 @@ function gridErase() {
 // Starting Grid State
 createElements(16);
 gridContainer.classList.add("light-mode");
-ltModeBtn.classList.remove("button-inactive");
-ltModeBtn.classList.add("button-active");
+lightModeBtn.classList.add("btn-active");

@@ -88,7 +88,7 @@ header {
 .btn {
     font-size: 2em;
     font-weight: 600;
-    padding: 0.1em;
+    padding: 5px 10px;
     border: none;
     width: 15vw;
     transition: 0.1s;
@@ -106,13 +106,9 @@ header {
     background-color: var(--text-dark);
 }
 
-.button-active {
+.btn-active {
     background-color: var(--text-accent);
     color: var(--text-light);
-}
-.button-inactive {
-    background-color: #3aafa9;
-    color: var(--text-dark);
 }
 
 /* TYPE */
