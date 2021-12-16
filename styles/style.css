@@ -4,6 +4,7 @@
     --main-bg-accent: #2b7a78;
     --text-light    : #def2f1;
     --text-dark     : #17252a;
+    --text-accent   : #e74c3c;
 }
 
 * {
@@ -17,6 +18,7 @@ html {
     font-family: "Roboto", sans-serif;
 }
 
+/* MAIN DIVS */
 body {
     display: flex;
     background-color: var(--main-bg-color);
@@ -29,16 +31,15 @@ main {
 }
 
 header {
+    margin-top: 1em;
     text-align: center;
 }
-h1 {
-    font-size: 4em;
-    font-weight: 900;
-}
-h2 {
-    font-weight: 400;
-}
+
 .sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     background-color: var(--main-bg-accent);
     color: var(--text-light);
     width: 20vw;
@@ -54,9 +55,74 @@ h2 {
 }
 
 #grid-container {
+    /* background-color: var(--text-light); */
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.9);
     display: grid;
-    background-color: var(--text-light);
     height: 70vh;
     width: 70vh;
     grid-gap: 1px;
 }
+
+/* BUTTONS AND SLIDERS */
+
+#grid-slider {
+    -webkit-appearance: none;
+    width: 15vw;
+    height: 10px;
+    background-color: #3aafa9;
+}
+#grid-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    cursor: pointer;
+    background: var(--text-accent);
+    width: 2em;
+    height: 2em;
+}
+#slider-display {
+    text-align: center;
+    color: #17252a;
+    font-size: 5vw;
+    font-weight: 800;
+}
+
+.btn {
+    font-size: 2em;
+    font-weight: 600;
+    padding: 0.1em;
+    border: none;
+    width: 15vw;
+    transition: 0.1s;
+}
+.btn:hover {
+    transform: scale(1.1);
+    border: 2px solid var(--text-accent);
+}
+/* MODES */
+
+.light-mode {
+    background-color: var(--text-light);
+}
+.dark-mode {
+    background-color: var(--text-dark);
+}
+
+.button-active {
+    background-color: var(--text-accent);
+    color: var(--text-light);
+}
+.button-inactive {
+    background-color: #3aafa9;
+    color: var(--text-dark);
+}
+
+/* TYPE */
+h1 {
+    font-size: 4em;
+    font-weight: 900;
+}
+h2 {
+    font-weight: 700;
+    color: #e74c3c;
+}
+
+/* MEDIA QUERIES */
