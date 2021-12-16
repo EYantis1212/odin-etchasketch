@@ -74,6 +74,8 @@ function createElements(gridSize) {
         gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
         const gridElement = document.createElement("div");
         gridElement.addEventListener("mouseover", draw);
+        gridElement.style.transition = ".1s";
+        gridElement.style.border = `.5px inset #3aafa9`;
         gridContainer.appendChild(gridElement);
         if (mode === "liteBrite") {
             gridElement.style.borderRadius = "50%";
